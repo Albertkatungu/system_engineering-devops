@@ -1,0 +1,4 @@
+#!/bin/bash
+cd system_engineering-devops/0x00-shell_basics
+touch 0-current_working_directory
+vi 0-current_working_directory
