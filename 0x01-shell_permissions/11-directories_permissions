@@ -1,2 +1,2 @@
 #!/bin/bash
-for item in *; do if [ -d "$item" ]; then chmod a+x "$item" fi done
+chmod a+x */ 
