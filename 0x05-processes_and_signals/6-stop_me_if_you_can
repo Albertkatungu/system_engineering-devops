@@ -3,12 +3,20 @@
 
 # shellcheck disable=SC2009
 
-# Get the PID(s) of the process
+# Find PIDs of the running 4-to_infinity_and_beyond process
 pids=$(pgrep -f "4-to_infinity_and_beyond")
 
-# Terminate the process using /proc signal mechanism
+# Initialize counter
+count=0
+
+# Loop through each PID and terminate it
 for pid in $pids; do
+    # Set oom_score_adj to 15 to make it easier to kill
     echo 15 > /proc/"$pid"/oom_score_adj 2>/dev/null
-    # Send SIGTERM via /proc
-    echo -n > /proc/"$pid"/fd/0 2>/dev/null
+    # Send SIGTERM by writing to /proc/$pid/fd/0
+    kill -15 "$pid" 2>/dev/null || true
+    count=$((count + 1))
 done
+
+# Output the number of processes killed
+echo "$count"
