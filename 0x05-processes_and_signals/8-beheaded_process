@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Script to forcibly terminate the 7-highlander process using SIGKILL
+
+# Find all PIDs of processes matching "7-highlander" (ignore grep itself)
+pids=$(ps -eo pid,cmd | grep "7-highlander" | grep -v grep | awk '{print $1}')
+
+# Loop through each PID and send SIGKILL
+for pid in $pids; do
+    kill -9 "$pid"
+done
