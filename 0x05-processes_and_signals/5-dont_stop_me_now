@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Stop the 4-to_infinity_and_beyond process
+
+# Find the PID(s) of the running script and kill them
+pkill -f "4-to_infinity_and_beyond"
