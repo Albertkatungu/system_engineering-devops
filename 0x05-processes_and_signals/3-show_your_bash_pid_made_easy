@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # Display PID and full path of all processes whose name contains "bash"
+
 # shellcheck disable=SC2009
 for pid in $(pgrep -x bash); do
-    echo "$pid $(readlink -f /proc/$pid/exe)"
+    exe_path=$(readlink -f "/proc/$pid/exe")
+    echo "$pid $exe_path"
 done
