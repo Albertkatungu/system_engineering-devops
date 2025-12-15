@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Infinite loop that ignores SIGTERM and prints a message instead
+
+# Trap SIGTERM and print "I am invincible!!!"
+trap 'echo "I am invincible!!!"' SIGTERM
+
+# Infinite loop
+while true; do
+    echo "To infinity and beyond"
+    sleep 2
+done
