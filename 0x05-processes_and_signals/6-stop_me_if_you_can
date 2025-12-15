@@ -1,22 +1,17 @@
 #!/usr/bin/env bash
 # Stop the 4-to_infinity_and_beyond process without using kill or killall
 
-# shellcheck disable=SC2009
-
-# Find PIDs of the running 4-to_infinity_and_beyond process
+# Use pgrep to find PIDs of the process
 pids=$(pgrep -f "4-to_infinity_and_beyond")
 
-# Initialize counter
-count=0
+# Count how many processes were found
+count=$(echo "$pids" | wc -l)
 
-# Loop through each PID and terminate it
+# Terminate each process using pkill
 for pid in $pids; do
-    # Set oom_score_adj to 15 to make it easier to kill
-    echo 15 > /proc/"$pid"/oom_score_adj 2>/dev/null
-    # Send SIGTERM by writing to /proc/$pid/fd/0
-    kill -15 "$pid" 2>/dev/null || true
-    count=$((count + 1))
+    pkill -P "$pid" -f "4-to_infinity_and_beyond" 2>/dev/null
 done
 
 # Output the number of processes killed
 echo "$count"
+
