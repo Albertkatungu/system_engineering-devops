@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Infinite loop that ignores SIGTERM and prints a message instead
+# Infinite loop that handles SIGTERM and prints "I am invincible!!!"
 
-# Trap SIGTERM and print "I am invincible!!!"
-trap 'echo "I am invincible!!!"' SIGTERM
+# Trap SIGTERM, print the message, and output OK
+trap 'echo "I am invincible!!!"; echo "OK"' SIGTERM
 
 # Infinite loop
 while true; do
