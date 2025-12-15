@@ -1,5 +1,3 @@
 #!/usr/bin/env bash
-# Displays a comprehensive list of all currently running processes
-
-# Use BSD-style output for ALX checker compatibility
-ps -A -o uid,pid,ppid,cmd
+# Display the UID of the current user
+id -u
