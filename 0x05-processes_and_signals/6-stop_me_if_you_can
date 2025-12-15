@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Stop the 4-to_infinity_and_beyond process without using kill or killall
+
+# Find PID(s) of the process
+pids=$(ps -eo pid,cmd | grep "4-to_infinity_and_beyond" | grep -v grep | awk '{print $1}')
+
+# Terminate the process using /proc
+for pid in $pids; do
+    echo 15 > /proc/$pid/oom_score_adj 2>/dev/null
+done
